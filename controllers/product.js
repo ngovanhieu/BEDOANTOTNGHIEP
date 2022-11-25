@@ -9,11 +9,11 @@ const getProducts = async (req, res) => {
       var skip = (page - 1) * PAGE_SIZE;
       const Product = await Products.find({}).skip(skip).limit(PAGE_SIZE);
       const totalProduct = await Products.find({});
-      const total = Math.round(totalProduct.length / PAGE_SIZE);
+      const total = Math.ceil(totalProduct.length / PAGE_SIZE);
       res.status(200).json({ Product, total, totalProduct });
     } else {
       const Product = await Products.find({});
-      const total = Math.round(Product.length / PAGE_SIZE);
+      const total = Math.ceil(Product.length / PAGE_SIZE);
       res.status(200).json({ Product, total });
     }
   } catch (error) {

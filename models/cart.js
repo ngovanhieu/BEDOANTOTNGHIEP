@@ -1,17 +1,37 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ordersSchema = new Schema(
+const CartsSchema = new Schema(
   {
-    image: {
+    productId: {
       type: String,
       require: true,
     },
-    userId: {
+    productName: {
       type: String,
       require: true,
     },
-    customerName: {
+    productBrand: {
+      type: String,
+      require: true,
+    },
+    quatily: {
+      type: Number,
+      require: true,
+    },
+    price: {
+      type: Number,
+      require: true,
+    },
+    type: {
+      type: String,
+      require: true,
+    },
+    userld: {
+      type: String,
+      require: true,
+    },
+    userName: {
       type: String,
       require: true,
     },
@@ -19,29 +39,21 @@ const ordersSchema = new Schema(
       type: String,
       require: true,
     },
-    price: {
-      type: Number,
-      require: true,
-    },
-    Brand: {
+    address: {
       type: String,
       require: true,
     },
-    Color: {
+    orderStatus: {
       type: String,
       require: true,
     },
-    Amount: {
-      type: Number,
+    image: {
+      type: String,
       require: true,
-    },
-    Total: {
-      type: Number,
-      require: true,
-    },
+    }
   },
   { timestamps: true }
 );
 
-const Orders = mongoose.model("Orders", ordersSchema);
-module.exports = Orders;
+const Carts = mongoose.model("Carts", CartsSchema);
+module.exports = Carts;

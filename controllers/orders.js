@@ -69,8 +69,8 @@ const getOrderById = (req, res) => {
 
 const addOrder = async (req, res) => {
   try {
-    let order = new Orders(req.body);
-    await order.save();
+    let orders = await Orders(req.body);
+    await orders.save();
     await res.status(200).json({
       message: "Add order successfully!",
     });
@@ -84,7 +84,7 @@ const addOrder = async (req, res) => {
 const editOrder = (req, res) => {
   try {
     let orderId = req.params.id;
-    console.log(orderId); 
+    console.log(orderId);
     Orders.findByIdAndUpdate(orderId, req.body).then((data) => {
       if (!data) {
         res.status(404).send({

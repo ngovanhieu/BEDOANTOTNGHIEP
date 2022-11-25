@@ -8,6 +8,7 @@ const cors = require("cors");
 const UsersRouter = require("./routes/users");
 const OrdersRouter = require("./routes/orders");
 const ProductRouter = require("./routes/product");
+const CartRouter = require("./routes/cart");
 mongoose.connect("mongodb+srv://admin:1111@cluster0.ebc8r8o.mongodb.net/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -47,3 +48,4 @@ app.use(bodyParser.json());
 app.use("", UsersRouter);
 app.use("", OrdersRouter);
 app.use("", ProductRouter);
+app.use("", CartRouter);

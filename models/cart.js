@@ -13,9 +13,9 @@ const CartsSchema = new Schema(
     },
     productBrand: {
       type: String,
-      require: true,
+      require: false,
     },
-    quatily: {
+    quantity: {
       type: Number,
       require: true,
     },
@@ -27,7 +27,7 @@ const CartsSchema = new Schema(
       type: String,
       require: true,
     },
-    userld: {
+    userId: {
       type: String,
       require: true,
     },

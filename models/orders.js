@@ -11,6 +11,10 @@ const ordersSchema = new Schema(
       type: String,
       require: true,
     },
+    productId:{
+      type: String,
+      require: true,
+    },
     customerName: {
       type: String,
       require: true,

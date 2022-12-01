@@ -15,5 +15,6 @@ route.get('/api/orders/getAllOrders', ordersController.getAllOrders)
 route.get('/api/orders/getOrderById/:orderById', ordersController.getOrderById)
 route.delete('/api/orders/deleteOrderById/:orderId', ordersController.removeOrder)
 route.patch('/api/orders/editOrder/:orderById', ordersController.editOrder)
+route.get('/api/orders/getOrderByUserId/:userId', ordersController.getOrderByUserId)
 
 module.exports = route

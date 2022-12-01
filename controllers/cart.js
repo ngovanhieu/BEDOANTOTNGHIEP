@@ -11,14 +11,17 @@ const errorFunction = require("../utils/errorFunction");
 
 const addOrderProduct = async (req, res, next) => {
   try {
+    console.log(req.body);
+
     const quantity = req.body.quantity;
     const user = await Users.findById(req.body.userId);
     const product = await Products.findById(req.body.productId);
     const requestProduct = { quantity: product.quantity - quantity };
-    if (!user) {
+
+    if (!user) { 
       return res.json(
         errorFunction(true, 204, "This user Id have not in the database")
-      );
+      ); 
     }
     if (!product) {
       return res.json(
@@ -58,7 +61,6 @@ const addOrderProduct = async (req, res, next) => {
       }
     }
   } catch (error) {
-    res.json(400);
     return res.json(errorFunction(true, 400, "Bad request"));
   }
 };
@@ -144,10 +146,46 @@ const removeOrder = (req, res) => {
   }
 };
 
+
+
+const getOrderByUserId = async (req, res, next) => {
+  const userId = req.params.userId
+  try {
+    const filter = {
+      $and: [
+        {
+          userId: {
+            $regex: userId,
+            $options: '$i',
+          },
+        },
+      ],
+    }
+    const orders = await Carts.find(filter)
+    if (orders) {
+      res.status(200).json({
+        statusCode: 200,
+        total: orders.length,
+        orders: orders.reverse(),
+      })
+    } else {
+      res.json({
+        statusCode: 204,
+        message: 'This order Id have not in the database',
+        order: {},
+      })
+    }
+  } catch (error) {
+    res.status(400)
+    return res.json(errorFunction(true, 400, 'Bad request'))
+  }
+}
+
 module.exports = {
   addOrderProduct,
   getAllOrders,
   getOrderById,
   editOrder,
   removeOrder,
+  getOrderByUserId
 };
